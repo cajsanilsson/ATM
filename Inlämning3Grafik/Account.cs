@@ -9,12 +9,14 @@ namespace Inlämning3Grafik
     internal class Account
     {
         public string accountName;
+        public int accountNumber;
         private int accountBalance;
 
-        public Account(string Konto, int Saldo)
+        public Account(string Konto, int Nummer, int Saldo)
         {
             accountName = Konto;
             AccountBalance = Saldo;
+            accountNumber = Nummer;
         }
         public int AccountBalance
         {
