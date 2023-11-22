@@ -3,7 +3,7 @@ namespace Inlämning3Grafik
     public partial class Start : Form
     {
         List<Account> accountList;
-
+         ManageMenu manageMenu; 
         
         public Start()
         {
@@ -118,7 +118,7 @@ namespace Inlämning3Grafik
 
         private void InsertLabel_Click(object sender, EventArgs e)
         {
-            InsertMenu insertMenu = new InsertMenu(AccBalLabel); 
+            InsertMenu insertMenu = new InsertMenu(AccBalLabel, accountList, manageMenu); 
             insertMenu.Show();
         }
 

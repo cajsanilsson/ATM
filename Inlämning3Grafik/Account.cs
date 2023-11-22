@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Inlämning3Grafik
 {
-    internal class Account
+    public class Account
     {
         public string accountName;
         public int accountNumber;
-        private int accountBalance;
+        public int accountBalance;
 
         public Account(string Konto, int Nummer, int Saldo)
         {

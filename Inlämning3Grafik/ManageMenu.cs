@@ -15,16 +15,21 @@ namespace Inlämning3Grafik
 
         List<Denomination> denominationList;
 
-        List<Account> accountList;
+       public List<Account> accountList;
 
         private Label _accBalLabel;
 
-        public InsertMenu InsertMenu;
+        private InsertMenu _insertMenu;
+
+        public ListBox AccountListBox;
         public ManageMenu(Label accBalLabel)
         {
             _accBalLabel = accBalLabel;
 
             InitializeComponent();
+
+            _insertMenu = new InsertMenu(_accBalLabel);
+            _insertMenu.SetManageMenu(this);
 
             accountList = new List<Account>();
             accountList.Add(new Account("SAVINGS ACCOUNT", 123 - 456, 1500));
@@ -51,7 +56,6 @@ namespace Inlämning3Grafik
 
         }
 
-
         private void AddAccButton_Click(object sender, EventArgs e)
         {
             string newAccName = AccNamTextbox.Text;
@@ -61,12 +65,16 @@ namespace Inlämning3Grafik
                 int newAccBal = 0;
                 if (newAccName != null && newAccNum != 0)
                 {
-
                     accountList.Add(new Account(newAccName, newAccNum, newAccBal));
+                    
+                    // Skicka med accountList till InsertMenu
+                    _insertMenu = new InsertMenu(_accBalLabel, accountList, this);
 
                     UpdateRemListBox();
                     UpdateAccBalLabel();
-                   
+                    _insertMenu.UpdateAccInsListBox();
+                    //UpdateInsertMenuListBox();
+
                     MessageBox.Show("ACCOUNT ADDED.");
                 }
                 else
@@ -78,24 +86,28 @@ namespace Inlämning3Grafik
             {
                 MessageBox.Show("ONLY NUMBERS ALLOWED IN ACCOUNT NUMBER TEXTBOX.");
             }
+        }
 
+        public void UpdateInsertMenuListBox()
+        {
+            _insertMenu.UpdateAccInsListBox();
         }
         private void RemAccButton_Click(object sender, EventArgs e)
         {
             if (accountList != null && RemoveListbox.SelectedItem != null)
             {
                 string selectedAccountName = RemoveListbox.SelectedItem as string;
-               
+
                 if (selectedAccountName != null)
                 {
                     Account selectedAccount = accountList.Find(account => account.accountName == selectedAccountName);
-                   
+
                     if (selectedAccount != null)
                     {
 
                         accountList.Remove(selectedAccount);
 
-                        UpdateRemListBox(); 
+                        UpdateRemListBox();
 
                         UpdateAccBalLabel();
 
@@ -133,5 +145,6 @@ namespace Inlämning3Grafik
 
             }
         }
+
     }
 }

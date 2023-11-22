@@ -159,6 +159,7 @@
             AccountListBox.Name = "AccountListBox";
             AccountListBox.Size = new Size(186, 119);
             AccountListBox.TabIndex = 10;
+            AccountListBox.SelectedIndexChanged += AccountListBox_SelectedIndexChanged;
             // 
             // InsButton
             // 
@@ -245,10 +246,10 @@
         private TextBox TwoInsTextbox;
         private TextBox FivInsTextbox;
         private TextBox ThoInsTextbox;
-        private ListBox AccountListBox;
         private Button InsButton;
         private Button BackInsButton;
         private Label label1;
         private Label label2;
+        public ListBox AccountListBox;
     }
 }

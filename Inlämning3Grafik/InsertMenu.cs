@@ -15,22 +15,28 @@ namespace Inlämning3Grafik
     {
         List<Denomination> denominationList;
 
-        List<Account> accountList;
+        List <Account> accountList;
 
         private Label _accBalLabel;
 
-        public InsertMenu(Label accBalLabel)
+        private ManageMenu manageMenu;
+
+        public InsertMenu(Label accBalLabel, List<Account> accountList, ManageMenu manageMenu)
         {
             InitializeComponent();
 
-            _accBalLabel = accBalLabel;
+            this._accBalLabel = accBalLabel;
+
+            this.manageMenu = manageMenu;
+
+            this.accountList = accountList;
 
             accountList = new List<Account>();
-            accountList.Add(new Account("SAVINGS ACCOUNT", 123-456,  1500));
-            accountList.Add(new Account("GENERAL ACCOUNT", 456-789, 2000));
+            accountList.Add(new Account("SAVINGS ACCOUNT", 123 - 456, 1500));
+            accountList.Add(new Account("GENERAL ACCOUNT", 456 - 789, 2000));
             foreach (Account account in accountList)
             {
-                AccountListBox.Items.Add(account.accountName); 
+                AccountListBox.Items.Add(account.accountName);
             }
 
             denominationList = new List<Denomination>();
@@ -65,6 +71,16 @@ namespace Inlämning3Grafik
             label2.Parent = pictureBox1;
             label2.BackColor = Color.Transparent;
 
+        }
+
+        public void UpdateAccInsListBox()
+        {
+            AccountListBox.Items.Clear();
+
+            foreach (Account account in manageMenu.accountList)
+            {
+                AccountListBox.Items.Add($"{account.accountName}: {account.AccountBalance.ToString()}");
+            }
         }
 
         private void BackInsButton_Click(object sender, EventArgs e)
@@ -111,7 +127,7 @@ namespace Inlämning3Grafik
                     MessageBox.Show("NO ACCOUNT TO INSERT TO. CHOOSE AN ACCOUNT BEFORE MAKING AN ACTION.");
                 }
             }
-            catch 
+            catch
             {
                 MessageBox.Show("ONLY NUMBERS ALLOWED. TRY AGAIN");
             }
@@ -147,6 +163,10 @@ namespace Inlämning3Grafik
             _accBalLabel.Text = labelText;
         }
 
+        public void AccountListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
