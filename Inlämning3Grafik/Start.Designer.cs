@@ -72,7 +72,7 @@
             // 
             CardButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             CardButton.ForeColor = SystemColors.ControlDarkDark;
-            CardButton.Location = new Point(403, 160);
+            CardButton.Location = new Point(394, 159);
             CardButton.Name = "CardButton";
             CardButton.Size = new Size(125, 29);
             CardButton.TabIndex = 2;

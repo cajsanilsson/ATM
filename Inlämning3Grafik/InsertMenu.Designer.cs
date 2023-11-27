@@ -40,8 +40,8 @@
             FivInsTextbox = new TextBox();
             ThoInsTextbox = new TextBox();
             AccountListBox = new ListBox();
-            InsButton = new Button();
-            BackInsButton = new Button();
+            InsertButton = new Button();
+            GoBackButton = new Button();
             label1 = new Label();
             label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -159,30 +159,29 @@
             AccountListBox.Name = "AccountListBox";
             AccountListBox.Size = new Size(186, 119);
             AccountListBox.TabIndex = 10;
-            AccountListBox.SelectedIndexChanged += AccountListBox_SelectedIndexChanged;
             // 
-            // InsButton
+            // InsertButton
             // 
-            InsButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            InsButton.ForeColor = SystemColors.ControlDarkDark;
-            InsButton.Location = new Point(514, 353);
-            InsButton.Margin = new Padding(4, 3, 4, 3);
-            InsButton.Name = "InsButton";
-            InsButton.Size = new Size(118, 33);
-            InsButton.TabIndex = 11;
-            InsButton.Text = "INSERT";
-            InsButton.UseVisualStyleBackColor = true;
-            InsButton.Click += InsButton_Click;
+            InsertButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            InsertButton.ForeColor = SystemColors.ControlDarkDark;
+            InsertButton.Location = new Point(514, 353);
+            InsertButton.Margin = new Padding(4, 3, 4, 3);
+            InsertButton.Name = "InsertButton";
+            InsertButton.Size = new Size(118, 33);
+            InsertButton.TabIndex = 11;
+            InsertButton.Text = "INSERT";
+            InsertButton.UseVisualStyleBackColor = true;
+            InsertButton.Click += InsertButton_Click;
             // 
-            // BackInsButton
+            // GoBackButton
             // 
-            BackInsButton.Location = new Point(33, 500);
-            BackInsButton.Name = "BackInsButton";
-            BackInsButton.Size = new Size(190, 29);
-            BackInsButton.TabIndex = 12;
-            BackInsButton.Text = "BACK TO MAINMENU";
-            BackInsButton.UseVisualStyleBackColor = true;
-            BackInsButton.Click += BackInsButton_Click;
+            GoBackButton.Location = new Point(33, 500);
+            GoBackButton.Name = "GoBackButton";
+            GoBackButton.Size = new Size(190, 29);
+            GoBackButton.TabIndex = 12;
+            GoBackButton.Text = "BACK TO MAINMENU";
+            GoBackButton.UseVisualStyleBackColor = true;
+            GoBackButton.Click += GoBackButton_Click;
             // 
             // label1
             // 
@@ -211,8 +210,8 @@
             ClientSize = new Size(883, 556);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(BackInsButton);
-            Controls.Add(InsButton);
+            Controls.Add(GoBackButton);
+            Controls.Add(InsertButton);
             Controls.Add(AccountListBox);
             Controls.Add(ThoInsTextbox);
             Controls.Add(FivInsTextbox);
@@ -246,8 +245,8 @@
         private TextBox TwoInsTextbox;
         private TextBox FivInsTextbox;
         private TextBox ThoInsTextbox;
-        private Button InsButton;
-        private Button BackInsButton;
+        private Button InsertButton;
+        private Button GoBackButton;
         private Label label1;
         private Label label2;
         public ListBox AccountListBox;

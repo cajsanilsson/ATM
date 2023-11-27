@@ -19,21 +19,14 @@ namespace Inlämning3Grafik
 
         private Label _accBalLabel;
 
-        private ManageMenu manageMenu;
-
-        public InsertMenu(Label accBalLabel, List<Account> accountList, ManageMenu manageMenu)
+        public InsertMenu(Label accBalLabel, List<Account> myaccounts)
         {
             InitializeComponent();
 
-            this._accBalLabel = accBalLabel;
+            _accBalLabel = accBalLabel;
 
-            this.manageMenu = manageMenu;
+            accountList = myaccounts;
 
-            this.accountList = accountList;
-
-            accountList = new List<Account>();
-            accountList.Add(new Account("SAVINGS ACCOUNT", 123 - 456, 1500));
-            accountList.Add(new Account("GENERAL ACCOUNT", 456 - 789, 2000));
             foreach (Account account in accountList)
             {
                 AccountListBox.Items.Add(account.accountName);
@@ -73,22 +66,12 @@ namespace Inlämning3Grafik
 
         }
 
-        public void UpdateAccInsListBox()
-        {
-            AccountListBox.Items.Clear();
-
-            foreach (Account account in manageMenu.accountList)
-            {
-                AccountListBox.Items.Add($"{account.accountName}: {account.AccountBalance.ToString()}");
-            }
-        }
-
-        private void BackInsButton_Click(object sender, EventArgs e)
+        private void GoBackButton_Click(object sender, EventArgs e)
         {
             Hide();
         }
 
-        private void InsButton_Click(object sender, EventArgs e)
+        private void InsertButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -112,7 +95,7 @@ namespace Inlämning3Grafik
 
                             selectedAccount.AccountBalance += totalValue;
 
-                            UpdateAccBalLabel();
+                            UpdateAccountBalanceLabel();
 
                             MessageBox.Show($"{totalValue}KR IS NOW INSERTED TO: {selectedAccountName}.");
                         }
@@ -150,9 +133,7 @@ namespace Inlämning3Grafik
             }
         }
 
-
-
-        private void UpdateAccBalLabel()
+        private void UpdateAccountBalanceLabel()
         {
             string labelText = "";
             foreach (Account account in accountList)
@@ -161,11 +142,6 @@ namespace Inlämning3Grafik
             }
 
             _accBalLabel.Text = labelText;
-        }
-
-        public void AccountListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

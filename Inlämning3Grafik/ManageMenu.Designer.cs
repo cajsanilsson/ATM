@@ -30,16 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageMenu));
             pictureBox1 = new PictureBox();
-            AddAccLabel = new Label();
-            DelAccLabel = new Label();
+            AddAccountLabel = new Label();
+            DeleteAccountLabel = new Label();
             ManageMenuLabel = new Label();
             RemoveListbox = new ListBox();
-            AccNamLabel = new Label();
-            AccNumTextbox = new TextBox();
-            AccNumLabel = new Label();
-            AccNamTextbox = new TextBox();
-            AddAccButton = new Button();
-            RemAccButton = new Button();
+            AccountNameLabel = new Label();
+            AccountNumberTextbox = new TextBox();
+            AccountNumberLabel = new Label();
+            AccountNameTextbox = new TextBox();
+            AddAccountButton = new Button();
+            RemoveAccountButton = new Button();
+            GoBackButton = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -53,34 +54,34 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // AddAccLabel
+            // AddAccountLabel
             // 
-            AddAccLabel.AutoSize = true;
-            AddAccLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            AddAccLabel.ForeColor = Color.FromArgb(64, 64, 64);
-            AddAccLabel.Location = new Point(160, 182);
-            AddAccLabel.Name = "AddAccLabel";
-            AddAccLabel.Size = new Size(130, 23);
-            AddAccLabel.TabIndex = 1;
-            AddAccLabel.Text = "ADD ACCOUNT";
+            AddAccountLabel.AutoSize = true;
+            AddAccountLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            AddAccountLabel.ForeColor = Color.FromArgb(64, 64, 64);
+            AddAccountLabel.Location = new Point(124, 182);
+            AddAccountLabel.Name = "AddAccountLabel";
+            AddAccountLabel.Size = new Size(130, 23);
+            AddAccountLabel.TabIndex = 1;
+            AddAccountLabel.Text = "ADD ACCOUNT";
             // 
-            // DelAccLabel
+            // DeleteAccountLabel
             // 
-            DelAccLabel.AutoSize = true;
-            DelAccLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            DelAccLabel.ForeColor = Color.FromArgb(64, 64, 64);
-            DelAccLabel.Location = new Point(583, 182);
-            DelAccLabel.Name = "DelAccLabel";
-            DelAccLabel.Size = new Size(164, 23);
-            DelAccLabel.TabIndex = 2;
-            DelAccLabel.Text = "REMOVE ACCOUNT";
+            DeleteAccountLabel.AutoSize = true;
+            DeleteAccountLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            DeleteAccountLabel.ForeColor = Color.FromArgb(64, 64, 64);
+            DeleteAccountLabel.Location = new Point(548, 182);
+            DeleteAccountLabel.Name = "DeleteAccountLabel";
+            DeleteAccountLabel.Size = new Size(164, 23);
+            DeleteAccountLabel.TabIndex = 2;
+            DeleteAccountLabel.Text = "REMOVE ACCOUNT";
             // 
             // ManageMenuLabel
             // 
             ManageMenuLabel.AutoSize = true;
             ManageMenuLabel.Font = new Font("Segoe UI Semibold", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
             ManageMenuLabel.ForeColor = SystemColors.ControlLightLight;
-            ManageMenuLabel.Location = new Point(220, 74);
+            ManageMenuLabel.Location = new Point(191, 72);
             ManageMenuLabel.Name = "ManageMenuLabel";
             ManageMenuLabel.Size = new Size(486, 50);
             ManageMenuLabel.TabIndex = 3;
@@ -90,86 +91,98 @@
             // 
             RemoveListbox.FormattingEnabled = true;
             RemoveListbox.ItemHeight = 20;
-            RemoveListbox.Location = new Point(583, 221);
+            RemoveListbox.Location = new Point(548, 224);
             RemoveListbox.Name = "RemoveListbox";
             RemoveListbox.Size = new Size(230, 104);
             RemoveListbox.TabIndex = 5;
             // 
-            // AccNamLabel
+            // AccountNameLabel
             // 
-            AccNamLabel.AutoSize = true;
-            AccNamLabel.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            AccNamLabel.ForeColor = SystemColors.ControlDarkDark;
-            AccNamLabel.Location = new Point(160, 222);
-            AccNamLabel.Name = "AccNamLabel";
-            AccNamLabel.Size = new Size(148, 23);
-            AccNamLabel.TabIndex = 6;
-            AccNamLabel.Text = "ACCOUNT NAME:";
+            AccountNameLabel.AutoSize = true;
+            AccountNameLabel.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            AccountNameLabel.ForeColor = SystemColors.ControlDarkDark;
+            AccountNameLabel.Location = new Point(124, 225);
+            AccountNameLabel.Name = "AccountNameLabel";
+            AccountNameLabel.Size = new Size(148, 23);
+            AccountNameLabel.TabIndex = 6;
+            AccountNameLabel.Text = "ACCOUNT NAME:";
             // 
-            // AccNumTextbox
+            // AccountNumberTextbox
             // 
-            AccNumTextbox.Location = new Point(336, 260);
-            AccNumTextbox.Name = "AccNumTextbox";
-            AccNumTextbox.Size = new Size(125, 27);
-            AccNumTextbox.TabIndex = 7;
+            AccountNumberTextbox.Location = new Point(309, 263);
+            AccountNumberTextbox.Name = "AccountNumberTextbox";
+            AccountNumberTextbox.Size = new Size(125, 27);
+            AccountNumberTextbox.TabIndex = 7;
             // 
-            // AccNumLabel
+            // AccountNumberLabel
             // 
-            AccNumLabel.AutoSize = true;
-            AccNumLabel.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            AccNumLabel.ForeColor = SystemColors.ControlDarkDark;
-            AccNumLabel.Location = new Point(160, 261);
-            AccNumLabel.Name = "AccNumLabel";
-            AccNumLabel.Size = new Size(170, 23);
-            AccNumLabel.TabIndex = 8;
-            AccNumLabel.Text = "ACCOUNT NUMBER:";
+            AccountNumberLabel.AutoSize = true;
+            AccountNumberLabel.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            AccountNumberLabel.ForeColor = SystemColors.ControlDarkDark;
+            AccountNumberLabel.Location = new Point(124, 264);
+            AccountNumberLabel.Name = "AccountNumberLabel";
+            AccountNumberLabel.Size = new Size(170, 23);
+            AccountNumberLabel.TabIndex = 8;
+            AccountNumberLabel.Text = "ACCOUNT NUMBER:";
             // 
-            // AccNamTextbox
+            // AccountNameTextbox
             // 
-            AccNamTextbox.Location = new Point(314, 221);
-            AccNamTextbox.Name = "AccNamTextbox";
-            AccNamTextbox.Size = new Size(125, 27);
-            AccNamTextbox.TabIndex = 9;
+            AccountNameTextbox.Location = new Point(287, 224);
+            AccountNameTextbox.Name = "AccountNameTextbox";
+            AccountNameTextbox.Size = new Size(125, 27);
+            AccountNameTextbox.TabIndex = 9;
             // 
-            // AddAccButton
+            // AddAccountButton
             // 
-            AddAccButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            AddAccButton.ForeColor = SystemColors.ControlDarkDark;
-            AddAccButton.Location = new Point(160, 307);
-            AddAccButton.Name = "AddAccButton";
-            AddAccButton.Size = new Size(94, 29);
-            AddAccButton.TabIndex = 10;
-            AddAccButton.Text = "ADD";
-            AddAccButton.UseVisualStyleBackColor = true;
-            AddAccButton.Click += AddAccButton_Click;
+            AddAccountButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            AddAccountButton.ForeColor = SystemColors.ControlDarkDark;
+            AddAccountButton.Location = new Point(124, 306);
+            AddAccountButton.Name = "AddAccountButton";
+            AddAccountButton.Size = new Size(94, 29);
+            AddAccountButton.TabIndex = 10;
+            AddAccountButton.Text = "ADD";
+            AddAccountButton.UseVisualStyleBackColor = true;
+            AddAccountButton.Click += AddAccountButton_Click;
             // 
-            // RemAccButton
+            // RemoveAccountButton
             // 
-            RemAccButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            RemAccButton.ForeColor = SystemColors.ControlDarkDark;
-            RemAccButton.Location = new Point(583, 348);
-            RemAccButton.Name = "RemAccButton";
-            RemAccButton.Size = new Size(94, 29);
-            RemAccButton.TabIndex = 11;
-            RemAccButton.Text = "REMOVE";
-            RemAccButton.UseVisualStyleBackColor = true;
-            RemAccButton.Click += RemAccButton_Click;
+            RemoveAccountButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            RemoveAccountButton.ForeColor = SystemColors.ControlDarkDark;
+            RemoveAccountButton.Location = new Point(548, 346);
+            RemoveAccountButton.Name = "RemoveAccountButton";
+            RemoveAccountButton.Size = new Size(94, 29);
+            RemoveAccountButton.TabIndex = 11;
+            RemoveAccountButton.Text = "REMOVE";
+            RemoveAccountButton.UseVisualStyleBackColor = true;
+            RemoveAccountButton.Click += RemoveAccountButton_Click;
+            // 
+            // GoBackButton
+            // 
+            GoBackButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            GoBackButton.ForeColor = SystemColors.ControlDarkDark;
+            GoBackButton.Location = new Point(25, 500);
+            GoBackButton.Name = "GoBackButton";
+            GoBackButton.Size = new Size(187, 29);
+            GoBackButton.TabIndex = 12;
+            GoBackButton.Text = "BACK TO MAINMENU";
+            GoBackButton.UseVisualStyleBackColor = true;
             // 
             // ManageMenu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(912, 556);
-            Controls.Add(RemAccButton);
-            Controls.Add(AddAccButton);
-            Controls.Add(AccNamTextbox);
-            Controls.Add(AccNumLabel);
-            Controls.Add(AccNumTextbox);
-            Controls.Add(AccNamLabel);
+            Controls.Add(GoBackButton);
+            Controls.Add(RemoveAccountButton);
+            Controls.Add(AddAccountButton);
+            Controls.Add(AccountNameTextbox);
+            Controls.Add(AccountNumberLabel);
+            Controls.Add(AccountNumberTextbox);
+            Controls.Add(AccountNameLabel);
             Controls.Add(RemoveListbox);
             Controls.Add(ManageMenuLabel);
-            Controls.Add(DelAccLabel);
-            Controls.Add(AddAccLabel);
+            Controls.Add(DeleteAccountLabel);
+            Controls.Add(AddAccountLabel);
             Controls.Add(pictureBox1);
             Name = "ManageMenu";
             Text = "ATM | MANAGE ACCOUNTS";
@@ -181,15 +194,16 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private Label AddAccLabel;
-        private Label DelAccLabel;
+        private Label AddAccountLabel;
+        private Label DeleteAccountLabel;
         private Label ManageMenuLabel;
         private ListBox RemoveListbox;
-        private Label AccNamLabel;
-        private TextBox AccNumTextbox;
-        private Label AccNumLabel;
-        private TextBox AccNamTextbox;
-        private Button AddAccButton;
-        private Button RemAccButton;
+        private Label AccountNameLabel;
+        private TextBox AccountNumberTextbox;
+        private Label AccountNumberLabel;
+        private TextBox AccountNameTextbox;
+        private Button AddAccountButton;
+        private Button RemoveAccountButton;
+        private Button GoBackButton;
     }
 }

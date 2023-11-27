@@ -17,18 +17,17 @@ namespace Inlämning3Grafik
         List<Account> accountList;
 
         private Label _accBalLabel;
-        public WithdrawMenu(Label accBalLabel)
+        public WithdrawMenu(Label accBalLabel, List<Account> myaccounts)
         {
             InitializeComponent();
 
             _accBalLabel = accBalLabel;
 
-            accountList = new List<Account>();
-            accountList.Add(new Account("SAVINGS ACCOUNT", 123-456, 1500));
-            accountList.Add(new Account("GENERAL ACCOUNT", 456-789, 2000));
+            accountList = myaccounts;
+
             foreach (Account account in accountList)
             {
-                AccWitListbox.Items.Add(account.accountName);
+                AccountWithdrawListbox.Items.Add(account.accountName);
             }
 
             denominationList = new List<Denomination>();
@@ -65,7 +64,7 @@ namespace Inlämning3Grafik
 
         }
 
-        private void BackWitButton_Click(object sender, EventArgs e)
+        private void GoBackButton_Click(object sender, EventArgs e)
         {
             Hide();
         }
@@ -74,9 +73,9 @@ namespace Inlämning3Grafik
         {
             try
             {
-                if (accountList != null && AccWitListbox.SelectedItem != null)
+                if (accountList != null && AccountWithdrawListbox.SelectedItem != null)
                 {
-                    string selectedAccountName = AccWitListbox.SelectedItem as string;
+                    string selectedAccountName = AccountWithdrawListbox.SelectedItem as string;
 
                     if (selectedAccountName != null)
                     {
@@ -94,7 +93,7 @@ namespace Inlämning3Grafik
 
                             selectedAccount.AccountBalance -= totalValue;
 
-                            UpdateAccBalLabel();
+                            UpdateAccountBalanceLabel();
 
                             MessageBox.Show($"{totalValue}KR IS NOW WITHDRAWN FROM: {selectedAccountName}.");
                         }
@@ -132,7 +131,7 @@ namespace Inlämning3Grafik
             }
         }
 
-        private void UpdateAccBalLabel()
+        private void UpdateAccountBalanceLabel()
         {
             string labelText = "";
             foreach (Account account in accountList)

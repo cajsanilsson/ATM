@@ -2,16 +2,12 @@ namespace Inlämning3Grafik
 {
     public partial class Start : Form
     {
-        List<Account> accountList;
-         ManageMenu manageMenu; 
-        
+        List<Account> accountList = new List<Account>();    
+       
         public Start()
         {
             InitializeComponent();
 
-            
-
-            accountList = new List<Account>();
             accountList.Add(new Account("SAVINGS ACCOUNT", 123-456, 1500));
             accountList.Add(new Account("GENERAL ACCOUNT", 456-789,  2000));
 
@@ -118,25 +114,25 @@ namespace Inlämning3Grafik
 
         private void InsertLabel_Click(object sender, EventArgs e)
         {
-            InsertMenu insertMenu = new InsertMenu(AccBalLabel, accountList, manageMenu); 
+            InsertMenu insertMenu = new InsertMenu(AccBalLabel, accountList); 
             insertMenu.Show();
         }
 
         private void WithdrawLabel_Click(object sender, EventArgs e)
         {
-            WithdrawMenu withdrawMenu = new WithdrawMenu(AccBalLabel);
+            WithdrawMenu withdrawMenu = new WithdrawMenu(AccBalLabel,accountList);
             withdrawMenu.Show();
         }
 
         private void TransferLabel_Click(object sender, EventArgs e)
         {
-            TransferMenu transferMenu = new TransferMenu(AccBalLabel);
+            TransferMenu transferMenu = new TransferMenu(AccBalLabel, accountList);
             transferMenu.Show();
         }
 
         private void ManageLabel_Click(object sender, EventArgs e)
         {
-            ManageMenu manageMenu = new ManageMenu(AccBalLabel);
+            ManageMenu manageMenu = new ManageMenu(AccBalLabel, accountList);
             manageMenu.Show();
         }
     }

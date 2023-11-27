@@ -10,7 +10,7 @@ namespace Inlämning3Grafik
     {
         public string accountName;
         public int accountNumber;
-        public int accountBalance;
+        private int accountBalance;
 
         public Account(string Konto, int Nummer, int Saldo)
         {
@@ -29,20 +29,6 @@ namespace Inlämning3Grafik
                 accountBalance = value;
             }
         }
-        public virtual void PrintInfo()
-        {
-            Console.WriteLine(accountName + "Saldo: " + accountBalance);
-        }
-
-        public virtual void PrintBalanceInfo()
-        {
-            Console.WriteLine("Beloppet du angett överstiger till saldo med: " + accountBalance + "KR, ange ett lägre belopp.");
-        }
-        public virtual void WithdrawError()
-        {
-            int TotaleIns = int.Parse(Console.ReadLine());
-            accountBalance = accountBalance - TotaleIns;
-            PrintBalanceInfo();
-        }
+        
     }
 }

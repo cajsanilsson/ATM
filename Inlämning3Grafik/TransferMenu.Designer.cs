@@ -44,7 +44,7 @@
             FivTraTextbox = new TextBox();
             ThoTraTextbox = new TextBox();
             TransferButton = new Button();
-            BackTraButton = new Button();
+            GoBackButton = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -195,22 +195,22 @@
             // 
             // BackTraButton
             // 
-            BackTraButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            BackTraButton.ForeColor = Color.FromArgb(64, 64, 64);
-            BackTraButton.Location = new Point(36, 388);
-            BackTraButton.Name = "BackTraButton";
-            BackTraButton.Size = new Size(195, 29);
-            BackTraButton.TabIndex = 18;
-            BackTraButton.Text = "BACK TO MAIN MENU";
-            BackTraButton.UseVisualStyleBackColor = true;
-            BackTraButton.Click += BackTraButton_Click;
+            GoBackButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            GoBackButton.ForeColor = Color.FromArgb(64, 64, 64);
+            GoBackButton.Location = new Point(36, 388);
+            GoBackButton.Name = "BackTraButton";
+            GoBackButton.Size = new Size(195, 29);
+            GoBackButton.TabIndex = 18;
+            GoBackButton.Text = "BACK TO MAIN MENU";
+            GoBackButton.UseVisualStyleBackColor = true;
+            GoBackButton.Click += GoBackButton_Click;
             // 
             // TransferMenu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(BackTraButton);
+            Controls.Add(GoBackButton);
             Controls.Add(TransferButton);
             Controls.Add(ThoTraTextbox);
             Controls.Add(FivTraTextbox);
@@ -250,6 +250,6 @@
         private TextBox FivTraTextbox;
         private TextBox ThoTraTextbox;
         private Button TransferButton;
-        private Button BackTraButton;
+        private Button GoBackButton;
     }
 }

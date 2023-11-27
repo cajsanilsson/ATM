@@ -39,9 +39,9 @@
             TwoWitTextbox = new TextBox();
             FivWitTextbox = new TextBox();
             ThoWitTextbox = new TextBox();
-            AccWitListbox = new ListBox();
+            AccountWithdrawListbox = new ListBox();
             WithdrawButton = new Button();
-            BackWitButton = new Button();
+            GoBackButton = new Button();
             label1 = new Label();
             label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -152,13 +152,13 @@
             // 
             // AccWitListbox
             // 
-            AccWitListbox.FormattingEnabled = true;
-            AccWitListbox.ItemHeight = 23;
-            AccWitListbox.Location = new Point(492, 209);
-            AccWitListbox.Margin = new Padding(4, 3, 4, 3);
-            AccWitListbox.Name = "AccWitListbox";
-            AccWitListbox.Size = new Size(186, 119);
-            AccWitListbox.TabIndex = 10;
+            AccountWithdrawListbox.FormattingEnabled = true;
+            AccountWithdrawListbox.ItemHeight = 23;
+            AccountWithdrawListbox.Location = new Point(492, 209);
+            AccountWithdrawListbox.Margin = new Padding(4, 3, 4, 3);
+            AccountWithdrawListbox.Name = "AccWitListbox";
+            AccountWithdrawListbox.Size = new Size(186, 119);
+            AccountWithdrawListbox.TabIndex = 10;
             // 
             // WithdrawButton
             // 
@@ -175,16 +175,16 @@
             // 
             // BackWitButton
             // 
-            BackWitButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            BackWitButton.ForeColor = SystemColors.ControlDarkDark;
-            BackWitButton.Location = new Point(28, 497);
-            BackWitButton.Margin = new Padding(4, 3, 4, 3);
-            BackWitButton.Name = "BackWitButton";
-            BackWitButton.Size = new Size(236, 33);
-            BackWitButton.TabIndex = 12;
-            BackWitButton.Text = "BACK TO MAINMENU";
-            BackWitButton.UseVisualStyleBackColor = true;
-            BackWitButton.Click += BackWitButton_Click;
+            GoBackButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            GoBackButton.ForeColor = SystemColors.ControlDarkDark;
+            GoBackButton.Location = new Point(28, 497);
+            GoBackButton.Margin = new Padding(4, 3, 4, 3);
+            GoBackButton.Name = "BackWitButton";
+            GoBackButton.Size = new Size(236, 33);
+            GoBackButton.TabIndex = 12;
+            GoBackButton.Text = "BACK TO MAINMENU";
+            GoBackButton.UseVisualStyleBackColor = true;
+            GoBackButton.Click += GoBackButton_Click;
             // 
             // label1
             // 
@@ -217,9 +217,9 @@
             ClientSize = new Size(883, 556);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(BackWitButton);
+            Controls.Add(GoBackButton);
             Controls.Add(WithdrawButton);
-            Controls.Add(AccWitListbox);
+            Controls.Add(AccountWithdrawListbox);
             Controls.Add(ThoWitTextbox);
             Controls.Add(FivWitTextbox);
             Controls.Add(TwoWitTextbox);
@@ -252,9 +252,9 @@
         private TextBox TwoWitTextbox;
         private TextBox FivWitTextbox;
         private TextBox ThoWitTextbox;
-        private ListBox AccWitListbox;
+        private ListBox AccountWithdrawListbox;
         private Button WithdrawButton;
-        private Button BackWitButton;
+        private Button GoBackButton;
         private Label label1;
         private Label label2;
     }

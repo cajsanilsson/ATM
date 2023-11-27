@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,73 +11,94 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Inlämning3Grafik
 {
     public partial class ManageMenu : Form
     {
-
-        List<Denomination> denominationList;
-
        public List<Account> accountList;
 
         private Label _accBalLabel;
-
-        private InsertMenu _insertMenu;
-
-        public ListBox AccountListBox;
-        public ManageMenu(Label accBalLabel)
+        public ManageMenu(Label accBalLabel, List<Account> myaccounts)
         {
             _accBalLabel = accBalLabel;
 
+            accountList = myaccounts;
+
             InitializeComponent();
 
-            _insertMenu = new InsertMenu(_accBalLabel);
-            _insertMenu.SetManageMenu(this);
-
-            accountList = new List<Account>();
-            accountList.Add(new Account("SAVINGS ACCOUNT", 123 - 456, 1500));
-            accountList.Add(new Account("GENERAL ACCOUNT", 456 - 789, 2000));
             foreach (Account account in accountList)
             {
                 RemoveListbox.Items.Add(account.accountName);
             }
 
-            AddAccLabel.Parent = pictureBox1;
-            AddAccLabel.BackColor = Color.Transparent;
+            AddAccountLabel.Parent = pictureBox1;
+            AddAccountLabel.BackColor = Color.Transparent;
 
-            DelAccLabel.Parent = pictureBox1;
-            DelAccLabel.BackColor = Color.Transparent;
+            DeleteAccountLabel.Parent = pictureBox1;
+            DeleteAccountLabel.BackColor = Color.Transparent;
 
             ManageMenuLabel.Parent = pictureBox1;
             ManageMenuLabel.BackColor = Color.Transparent;
 
-            AccNamLabel.Parent = pictureBox1;
-            AccNamLabel.BackColor = Color.Transparent;
+            AccountNameLabel.Parent = pictureBox1;
+            AccountNameLabel.BackColor = Color.Transparent;
 
-            AccNumLabel.Parent = pictureBox1;
-            AccNumLabel.BackColor = Color.Transparent;
-
+            AccountNumberLabel.Parent = pictureBox1;
+            AccountNumberLabel.BackColor = Color.Transparent;
         }
 
-        private void AddAccButton_Click(object sender, EventArgs e)
+        private void AddAccountButton_Click(object sender, EventArgs e)
         {
-            string newAccName = AccNamTextbox.Text;
+            string jsonFilePath = "C:\\Users\\PC\\Documents\\SKOLARBETE\\Inlämning3Grafik\\Inlämning3Grafik\account.json";
+
+            // Check if the file exists
+            if (File.Exists(jsonFilePath))
+            {
+                // Read the JSON content from the file
+                string jsonContent = File.ReadAllText(jsonFilePath);
+
+                try
+                {
+                    // Deserialize the JSON content into a dynamic object
+                    dynamic jsonData = JsonConvert.DeserializeObject(jsonContent);
+
+                    // Check if "name" is an array
+                    if (jsonData.accountName is JArray)
+                    {
+                        // Convert the array to a comma-separated string and display it in the textbox
+                        AccountNameTextbox.Text = string.Join(", ", jsonData.accountName);
+                    }
+                    else
+                    {
+                        // If "name" is not an array, display its string representation directly
+                        AccountNameTextbox.Text = jsonData.name.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle any exception that might occur during deserialization
+                    MessageBox.Show("Error reading JSON file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // Handle the case where the file doesn't exist
+                MessageBox.Show("JSON file not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            string newAccName = AccountNameTextbox.Text;
             try
             {
-                int newAccNum = (int.Parse(AccNumTextbox.Text));
+                int newAccNum = (int.Parse(AccountNumberTextbox.Text));
                 int newAccBal = 0;
                 if (newAccName != null && newAccNum != 0)
                 {
                     accountList.Add(new Account(newAccName, newAccNum, newAccBal));
-                    
-                    // Skicka med accountList till InsertMenu
-                    _insertMenu = new InsertMenu(_accBalLabel, accountList, this);
 
-                    UpdateRemListBox();
-                    UpdateAccBalLabel();
-                    _insertMenu.UpdateAccInsListBox();
-                    //UpdateInsertMenuListBox();
+                    UpdateRemoveListBox();
+                    UpdateAccountBalanceLabel();
 
                     MessageBox.Show("ACCOUNT ADDED.");
                 }
@@ -86,45 +111,40 @@ namespace Inlämning3Grafik
             {
                 MessageBox.Show("ONLY NUMBERS ALLOWED IN ACCOUNT NUMBER TEXTBOX.");
             }
+
         }
 
-        public void UpdateInsertMenuListBox()
+        private void RemoveAccountButton_Click(object sender, EventArgs e)
         {
-            _insertMenu.UpdateAccInsListBox();
-        }
-        private void RemAccButton_Click(object sender, EventArgs e)
-        {
-            if (accountList != null && RemoveListbox.SelectedItem != null)
-            {
-                string selectedAccountName = RemoveListbox.SelectedItem as string;
-
-                if (selectedAccountName != null)
-                {
-                    Account selectedAccount = accountList.Find(account => account.accountName == selectedAccountName);
-
-                    if (selectedAccount != null)
-                    {
-
-                        accountList.Remove(selectedAccount);
-
-                        UpdateRemListBox();
-
-                        UpdateAccBalLabel();
-
-                        MessageBox.Show($"{selectedAccountName} IS NOW REMOVED.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("ACCOUNT WAS NOT FOUND.");
-                    }
-                }
-            }
-            else
+            if (accountList == null || RemoveListbox.SelectedItem == null)
             {
                 MessageBox.Show("NO ACCOUNT TO REMOVE. CHOOSE AN ACCOUNT BEFORE MAKING AN ACTION.");
+                return;
             }
+
+            string selectedAccountName = RemoveListbox.SelectedItem as string;
+
+            if (selectedAccountName == null)
+            {
+                MessageBox.Show("INVALID SELECTED ACCOUNT.");
+                return;
+            }
+
+            Account selectedAccount = accountList.Find(account => account.accountName == selectedAccountName);
+
+            if (selectedAccount == null)
+            {
+                MessageBox.Show("ACCOUNT WAS NOT FOUND.");
+                return;
+            }
+
+            accountList.Remove(selectedAccount);
+            UpdateRemoveListBox();
+            UpdateAccountBalanceLabel();
+            MessageBox.Show($"{selectedAccountName} IS NOW REMOVED.");
         }
-        private void UpdateAccBalLabel()
+
+        private void UpdateAccountBalanceLabel()
         {
             string labelText = "";
             foreach (Account account in accountList)
@@ -132,19 +152,23 @@ namespace Inlämning3Grafik
                 labelText += $"{account.accountName}: {account.AccountBalance.ToString()}\n";
             }
 
-
             _accBalLabel.Text = labelText;
         }
-        public void UpdateRemListBox()
+
+        public void UpdateRemoveListBox()
         {
             RemoveListbox.Items.Clear();
 
             foreach (Account account in accountList)
             {
-                RemoveListbox.Items.Add($"{account.accountName}: {account.AccountBalance.ToString()}");
+                RemoveListbox.Items.Add($"{account.accountName}");
 
             }
         }
 
     }
+
+       
+
+    
 }
