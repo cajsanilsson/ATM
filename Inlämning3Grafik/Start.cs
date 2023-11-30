@@ -1,15 +1,20 @@
+using Newtonsoft.Json;
+using System.IO;
+
 namespace Inlämning3Grafik
 {
     public partial class Start : Form
     {
-        List<Account> accountList = new List<Account>();    
-       
+        List<Account> accountList = new List<Account>();
+
+        public ManageMenu manageMenu;
+
         public Start()
         {
             InitializeComponent();
 
-            accountList.Add(new Account("SAVINGS ACCOUNT", 123-456, 1500));
-            accountList.Add(new Account("GENERAL ACCOUNT", 456-789,  2000));
+            accountList.Add(new Account("SAVINGS ACCOUNT", 123 - 456, 1500));
+            accountList.Add(new Account("GENERAL ACCOUNT", 456 - 789, 2000));
 
             string labelText = "";
             foreach (Account account in accountList)
@@ -60,7 +65,7 @@ namespace Inlämning3Grafik
             pictureBox1.Visible = true;
 
         }
-
+       
         private void CardButton_Click(object sender, EventArgs e)
         {
             EndButton.Visible = false;
@@ -135,5 +140,6 @@ namespace Inlämning3Grafik
             ManageMenu manageMenu = new ManageMenu(AccBalLabel, accountList);
             manageMenu.Show();
         }
+
     }
 }

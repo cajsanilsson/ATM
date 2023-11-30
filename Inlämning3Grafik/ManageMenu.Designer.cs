@@ -166,6 +166,7 @@
             GoBackButton.TabIndex = 12;
             GoBackButton.Text = "BACK TO MAINMENU";
             GoBackButton.UseVisualStyleBackColor = true;
+            GoBackButton.Click += GoBackButton_Click;
             // 
             // ManageMenu
             // 

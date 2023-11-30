@@ -12,19 +12,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.DataFormats;
 
 namespace Inlämning3Grafik
 {
     public partial class ManageMenu : Form
     {
-       public List<Account> accountList;
+        public List<Account> accountList;
 
         private Label _accBalLabel;
+
+        string path = "account.json";
         public ManageMenu(Label accBalLabel, List<Account> myaccounts)
         {
             _accBalLabel = accBalLabel;
 
             accountList = myaccounts;
+
+            FileInfo file = new FileInfo(path);
+            if (!file.Exists)
+            {
+                MessageBox.Show("Fuck you");
+            }
+            else
+            {
+                LoadAll();
+            }
 
             InitializeComponent();
 
@@ -51,19 +64,6 @@ namespace Inlämning3Grafik
 
         private void AddAccountButton_Click(object sender, EventArgs e)
         {
-            string path = ""
-            FileInfo file = new FileInfo(path);
-            if (!file.Exists )
-            {
-                accountList.Add(new Account("SAVINGS ACCOUNT", 123 - 456, 1500));
-                accountList.Add(new Account("GENERAL ACCOUNT", 456 - 789, 2000));
-
-                foreach (Account account in accountList)
-                {
-                    accountList
-                }
-            }
-
             string newAccName = AccountNameTextbox.Text;
             try
             {
@@ -75,7 +75,7 @@ namespace Inlämning3Grafik
 
                     UpdateRemoveListBox();
                     UpdateAccountBalanceLabel();
-
+                    SaveToJson();
                     MessageBox.Show("ACCOUNT ADDED.");
                 }
                 else
@@ -87,7 +87,6 @@ namespace Inlämning3Grafik
             {
                 MessageBox.Show("ONLY NUMBERS ALLOWED IN ACCOUNT NUMBER TEXTBOX.");
             }
-
         }
 
         private void RemoveAccountButton_Click(object sender, EventArgs e)
@@ -117,6 +116,7 @@ namespace Inlämning3Grafik
             accountList.Remove(selectedAccount);
             UpdateRemoveListBox();
             UpdateAccountBalanceLabel();
+            SaveToJson();
             MessageBox.Show($"{selectedAccountName} IS NOW REMOVED.");
         }
 
@@ -126,6 +126,7 @@ namespace Inlämning3Grafik
             foreach (Account account in accountList)
             {
                 labelText += $"{account.accountName}: {account.AccountBalance.ToString()}\n";
+
             }
 
             _accBalLabel.Text = labelText;
@@ -142,9 +143,27 @@ namespace Inlämning3Grafik
             }
         }
 
+        public void SaveToJson()
+        {
+            string json = JsonConvert.SerializeObject(accountList);
+            using (StreamWriter streamWriter = new StreamWriter(path))
+            {
+                streamWriter.Write(json);
+            }
+        }
+
+        public void LoadAll()
+        {
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                string json = streamReader.ReadToEnd();
+                accountList = JsonConvert.DeserializeObject<List<Account>>(json);
+            }
+        }
+
+        private void GoBackButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+        }
     }
-
-       
-
-    
 }

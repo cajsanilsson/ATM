@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,13 +22,18 @@ namespace Inlämning3Grafik
         {
             InitializeComponent();
 
+            
+
             _accBalLabel = accBalLabel;
 
             accountList = myaccounts;
 
+
             foreach (Account account in accountList)
+
             {
                 AccountWithdrawListbox.Items.Add(account.accountName);
+                
             }
 
             denominationList = new List<Denomination>();
@@ -61,7 +67,6 @@ namespace Inlämning3Grafik
 
             label2.Parent = pictureBox1;
             label2.BackColor = Color.Transparent;
-
         }
 
         private void GoBackButton_Click(object sender, EventArgs e)
@@ -142,5 +147,6 @@ namespace Inlämning3Grafik
 
             _accBalLabel.Text = labelText;
         }
+
     }
 }

@@ -21,3 +21,5 @@ C:\Users\PC\Documents\SKOLARBETE\Inlämning3Grafik\Inlämning3Grafik\obj\Debug\n
 C:\Users\PC\Documents\SKOLARBETE\Inlämning3Grafik\Inlämning3Grafik\obj\Debug\net6.0-windows\Inlämning3Grafik.TransferMenu.resources
 C:\Users\PC\Documents\SKOLARBETE\Inlämning3Grafik\Inlämning3Grafik\obj\Debug\net6.0-windows\Inlämning3Grafik.ManageMenu.resources
 C:\Users\PC\Documents\SKOLARBETE\Inlämning3Grafik\Inlämning3Grafik\obj\Debug\net6.0-windows\Inlämning3Grafik.csproj.AssemblyReference.cache
+C:\Users\PC\Documents\SKOLARBETE\Inlämning3Grafik\Inlämning3Grafik\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\PC\Documents\SKOLARBETE\Inlämning3Grafik\Inlämning3Grafik\obj\Debug\net6.0-windows\Inlämning3Grafik.csproj.CopyComplete
