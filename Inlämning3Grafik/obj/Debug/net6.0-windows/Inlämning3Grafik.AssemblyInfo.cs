@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Inlämning3Grafik")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b572ef6ea6b02e82c4653446612f51e17cd237a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Inlämning3Grafik")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Inlämning3Grafik")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

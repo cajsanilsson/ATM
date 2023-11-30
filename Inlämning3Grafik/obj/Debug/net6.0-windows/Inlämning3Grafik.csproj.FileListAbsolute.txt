@@ -20,3 +20,4 @@ C:\Users\PC\Documents\SKOLARBETE\Inlämning3Grafik\Inlämning3Grafik\obj\Debug\n
 C:\Users\PC\Documents\SKOLARBETE\Inlämning3Grafik\Inlämning3Grafik\obj\Debug\net6.0-windows\ref\Inlämning3Grafik.dll
 C:\Users\PC\Documents\SKOLARBETE\Inlämning3Grafik\Inlämning3Grafik\obj\Debug\net6.0-windows\Inlämning3Grafik.TransferMenu.resources
 C:\Users\PC\Documents\SKOLARBETE\Inlämning3Grafik\Inlämning3Grafik\obj\Debug\net6.0-windows\Inlämning3Grafik.ManageMenu.resources
+C:\Users\PC\Documents\SKOLARBETE\Inlämning3Grafik\Inlämning3Grafik\obj\Debug\net6.0-windows\Inlämning3Grafik.csproj.AssemblyReference.cache

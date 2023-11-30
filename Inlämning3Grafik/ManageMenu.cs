@@ -51,41 +51,17 @@ namespace Inlämning3Grafik
 
         private void AddAccountButton_Click(object sender, EventArgs e)
         {
-            string jsonFilePath = "C:\\Users\\PC\\Documents\\SKOLARBETE\\Inlämning3Grafik\\Inlämning3Grafik\account.json";
-
-            // Check if the file exists
-            if (File.Exists(jsonFilePath))
+            string path = ""
+            FileInfo file = new FileInfo(path);
+            if (!file.Exists )
             {
-                // Read the JSON content from the file
-                string jsonContent = File.ReadAllText(jsonFilePath);
+                accountList.Add(new Account("SAVINGS ACCOUNT", 123 - 456, 1500));
+                accountList.Add(new Account("GENERAL ACCOUNT", 456 - 789, 2000));
 
-                try
+                foreach (Account account in accountList)
                 {
-                    // Deserialize the JSON content into a dynamic object
-                    dynamic jsonData = JsonConvert.DeserializeObject(jsonContent);
-
-                    // Check if "name" is an array
-                    if (jsonData.accountName is JArray)
-                    {
-                        // Convert the array to a comma-separated string and display it in the textbox
-                        AccountNameTextbox.Text = string.Join(", ", jsonData.accountName);
-                    }
-                    else
-                    {
-                        // If "name" is not an array, display its string representation directly
-                        AccountNameTextbox.Text = jsonData.name.ToString();
-                    }
+                    accountList
                 }
-                catch (Exception ex)
-                {
-                    // Handle any exception that might occur during deserialization
-                    MessageBox.Show("Error reading JSON file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                // Handle the case where the file doesn't exist
-                MessageBox.Show("JSON file not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             string newAccName = AccountNameTextbox.Text;
