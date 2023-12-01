@@ -17,23 +17,29 @@ namespace Inlämning3Grafik
 
         List<Account> accountList;
 
+        private JsonFileManager jsonFileManager;
+
         private Label _accBalLabel;
+
+        string path = "account.json";
         public WithdrawMenu(Label accBalLabel, List<Account> myaccounts)
         {
             InitializeComponent();
 
-            
+            jsonFileManager = new JsonFileManager("account.json");
 
             _accBalLabel = accBalLabel;
 
             accountList = myaccounts;
 
-
+            FileInfo file = new FileInfo(path);
+            
+            accountList = jsonFileManager.LoadAll<Account>();
+            jsonFileManager.SaveToJson(accountList);
+            
             foreach (Account account in accountList)
-
             {
                 AccountWithdrawListbox.Items.Add(account.accountName);
-                
             }
 
             denominationList = new List<Denomination>();
@@ -98,6 +104,7 @@ namespace Inlämning3Grafik
 
                             selectedAccount.AccountBalance -= totalValue;
 
+                            jsonFileManager.SaveToJson(accountList);
                             UpdateAccountBalanceLabel();
 
                             MessageBox.Show($"{totalValue}KR IS NOW WITHDRAWN FROM: {selectedAccountName}.");
@@ -143,8 +150,6 @@ namespace Inlämning3Grafik
             {
                 labelText += $"{account.accountName}: {account.AccountBalance.ToString()}\n";
             }
-
-
             _accBalLabel.Text = labelText;
         }
 

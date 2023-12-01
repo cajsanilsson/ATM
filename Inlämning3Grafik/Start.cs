@@ -9,12 +9,26 @@ namespace Inlämning3Grafik
 
         public ManageMenu manageMenu;
 
+        private JsonFileManager jsonFileManager;
+
+        string path = "account.json";
         public Start()
         {
             InitializeComponent();
 
-            accountList.Add(new Account("SAVINGS ACCOUNT", 123 - 456, 1500));
-            accountList.Add(new Account("GENERAL ACCOUNT", 456 - 789, 2000));
+            jsonFileManager = new JsonFileManager("account.json");
+
+            FileInfo file = new FileInfo(path);
+            if (!file.Exists)
+            {
+                accountList.Add(new Account("SAVINGS ACCOUNT", 123 - 456, 1500));
+                accountList.Add(new Account("GENERAL ACCOUNT", 456 - 789, 2000));
+            }
+            else
+            {
+                accountList = jsonFileManager.LoadAll<Account>();
+                jsonFileManager.SaveToJson(accountList);
+            }
 
             string labelText = "";
             foreach (Account account in accountList)

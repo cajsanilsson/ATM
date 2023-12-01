@@ -1,4 +1,5 @@
 ﻿using Inlämning3Grafik;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,15 +18,27 @@ namespace Inlämning3Grafik
 
         List <Account> accountList;
 
+        string path = "account.json";
+
         private Label _accBalLabel;
+
+        private JsonFileManager jsonFileManager;
 
         public InsertMenu(Label accBalLabel, List<Account> myaccounts)
         {
             InitializeComponent();
 
+            jsonFileManager = new JsonFileManager("account.json");
+
             _accBalLabel = accBalLabel;
 
             accountList = myaccounts;
+
+            FileInfo file = new FileInfo(path);
+            
+            accountList = jsonFileManager.LoadAll<Account>();
+            jsonFileManager.SaveToJson(accountList);
+            
 
             foreach (Account account in accountList)
             {
@@ -95,6 +108,7 @@ namespace Inlämning3Grafik
 
                             selectedAccount.AccountBalance += totalValue;
 
+                            jsonFileManager.SaveToJson(accountList);
                             UpdateAccountBalanceLabel();
 
                             MessageBox.Show($"{totalValue}KR IS NOW INSERTED TO: {selectedAccountName}.");
@@ -143,6 +157,7 @@ namespace Inlämning3Grafik
 
             _accBalLabel.Text = labelText;
         }
+
     }
 }
 

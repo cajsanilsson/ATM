@@ -23,22 +23,20 @@ namespace Inlämning3Grafik
         private Label _accBalLabel;
 
         string path = "account.json";
+
+        private JsonFileManager jsonFileManager;
         public ManageMenu(Label accBalLabel, List<Account> myaccounts)
         {
+            jsonFileManager = new JsonFileManager("account.json");
+
             _accBalLabel = accBalLabel;
 
             accountList = myaccounts;
 
             FileInfo file = new FileInfo(path);
-            if (!file.Exists)
-            {
-                MessageBox.Show("Fuck you");
-            }
-            else
-            {
-                LoadAll();
-            }
-
+            
+            accountList = jsonFileManager.LoadAll<Account>();
+                
             InitializeComponent();
 
             foreach (Account account in accountList)
@@ -71,11 +69,11 @@ namespace Inlämning3Grafik
                 int newAccBal = 0;
                 if (newAccName != null && newAccNum != 0)
                 {
+                    
                     accountList.Add(new Account(newAccName, newAccNum, newAccBal));
 
                     UpdateRemoveListBox();
-                    UpdateAccountBalanceLabel();
-                    SaveToJson();
+                    jsonFileManager.SaveToJson(accountList);
                     MessageBox.Show("ACCOUNT ADDED.");
                 }
                 else
@@ -116,7 +114,7 @@ namespace Inlämning3Grafik
             accountList.Remove(selectedAccount);
             UpdateRemoveListBox();
             UpdateAccountBalanceLabel();
-            SaveToJson();
+            jsonFileManager.SaveToJson(accountList);
             MessageBox.Show($"{selectedAccountName} IS NOW REMOVED.");
         }
 
@@ -126,7 +124,6 @@ namespace Inlämning3Grafik
             foreach (Account account in accountList)
             {
                 labelText += $"{account.accountName}: {account.AccountBalance.ToString()}\n";
-
             }
 
             _accBalLabel.Text = labelText;
@@ -140,24 +137,6 @@ namespace Inlämning3Grafik
             {
                 RemoveListbox.Items.Add($"{account.accountName}");
 
-            }
-        }
-
-        public void SaveToJson()
-        {
-            string json = JsonConvert.SerializeObject(accountList);
-            using (StreamWriter streamWriter = new StreamWriter(path))
-            {
-                streamWriter.Write(json);
-            }
-        }
-
-        public void LoadAll()
-        {
-            using (StreamReader streamReader = new StreamReader(path))
-            {
-                string json = streamReader.ReadToEnd();
-                accountList = JsonConvert.DeserializeObject<List<Account>>(json);
             }
         }
 

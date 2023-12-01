@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,13 +19,25 @@ namespace Inlämning3Grafik
         List<Account> accountList;
 
         private Label _accBalLabel;
+
+        private JsonFileManager jsonFileManager;
+
+        string path = "account.json";
         public TransferMenu(Label accBalLabel, List<Account> myaccounts)
         {
             InitializeComponent();
 
+            jsonFileManager = new JsonFileManager("account.json");
+
             _accBalLabel = accBalLabel;
 
             accountList = myaccounts;
+
+            FileInfo file = new FileInfo(path);
+            
+            accountList = jsonFileManager.LoadAll<Account>();
+            jsonFileManager.SaveToJson(accountList);
+            
 
             foreach (Account account in accountList)
             {
@@ -96,6 +110,7 @@ namespace Inlämning3Grafik
                             selectedAccount.AccountBalance += totalValue;
                             selectedAccount2.AccountBalance -= totalValue;
 
+                            jsonFileManager.SaveToJson(accountList);
                             UpdateAccountBalanceLabel();
 
                             MessageBox.Show($"{totalValue}KR IS NOW TRANSFERED FROM: {selectedAccountName2} TO: {selectedAccountName}");
@@ -145,5 +160,7 @@ namespace Inlämning3Grafik
 
             _accBalLabel.Text = labelText;
         }
+
+        
     }
 }

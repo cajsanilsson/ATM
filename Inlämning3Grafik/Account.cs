@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ namespace Inlämning3Grafik
             accountName = Konto;
             AccountBalance = Saldo;
             accountNumber = Nummer;
+            
         }
         public int AccountBalance
         {
@@ -29,6 +32,8 @@ namespace Inlämning3Grafik
                 accountBalance = value;
             }
         }
-        
+
+      
+
     }
 }
